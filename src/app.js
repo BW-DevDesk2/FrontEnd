@@ -21,7 +21,7 @@ function App() {
             <Route path={["/search/:term/:page", "/search/:term", "/search"]}>
               <h2>Search</h2>
             </Route>
-            <Route exact path="/user">
+            <Route path="/user/:username">
               <h2>UserProfile</h2>
             </Route>
             <Route path={["/ticket/new", "/ticket/:id/edit", "/ticket/:id"]}>
