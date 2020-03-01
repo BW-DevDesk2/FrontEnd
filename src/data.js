@@ -20,14 +20,12 @@ const data = {
       createdAt: Date.now,
       title: String,
       description: String,
-      solutions: ["shortid"],
+      attemptedSolution: String,
+      responses: ["shortid"],
       categories: [String],
       isOpen: Boolean,
       isResolved: Boolean,
-      assignedTo: ["shortid"],
-      meta: {
-        field: "value"
-      }
+      assignedTo: ["shortid"]
     }
   ],
   solutions: [
