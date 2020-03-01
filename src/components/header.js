@@ -1,13 +1,13 @@
 import React from "react";
-import { NavLink, useHistory } from "react-router-dom";
+import { Link, NavLink, useHistory } from "react-router-dom";
 
 function Header(props) {
   const history = useHistory();
   return (
     <header className="top">
       <nav>
-        <h1 className="title" onClick={() => history.push("/")}>
-          DevDesk
+        <h1 className="title">
+          <Link to="/">DevDesk</Link>
         </h1>
         <NavLink to="/saved">Saved Tickets</NavLink>
         <NavLink to="/login">Login</NavLink>
