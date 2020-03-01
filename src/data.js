@@ -2,17 +2,22 @@ const data = {
   user: {
     id: "shortid",
     name: "First Last",
-    createdAt: Date.now(),
+    createdAt: Date.now,
+    tickets: ["shortid"],
     role: {
       isAdmin: Boolean,
       isStudent: Boolean,
       isHelper: Boolean
     }
   },
-  tickets: {
-    shortid: {
+  tickets: [
+    {
       id: "shortid",
-      createdAt: Date.now(),
+      postedBy: {
+        id: "shortid",
+        name: "First Last"
+      },
+      createdAt: Date.now,
       title: String,
       description: String,
       solutions: ["shortid"],
@@ -24,13 +29,13 @@ const data = {
         field: "value"
       }
     }
-  },
-  solutions: {
-    shortid: {
+  ],
+  solutions: [
+    {
       id: "shortid",
       postedBy: "shortid",
-      createdAt: Date.now(),
+      createdAt: Date.now,
       text: String
     }
-  }
+  ]
 };

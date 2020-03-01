@@ -17,12 +17,22 @@ function App() {
           <Switch>
             <Route path="/dashboard">
               <h2>Dashboard</h2>
+              <ul className="tickets">
+                <li>Ticket 1</li>
+                <li>Ticket 2</li>
+                <li>Ticket 3</li>
+              </ul>
             </Route>
             <Route path={["/search/:term/:page", "/search/:term", "/search"]}>
               <h2>Search</h2>
             </Route>
             <Route path="/user/:username">
               <h2>UserProfile</h2>
+              <ul className="tickets">
+                <li>Ticket 1</li>
+                <li>Ticket 2</li>
+                <li>Ticket 3</li>
+              </ul>
             </Route>
             <Route path={["/ticket/new", "/ticket/:id/edit", "/ticket/:id"]}>
               <h2>Ticket</h2>
