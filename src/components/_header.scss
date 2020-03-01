@@ -1,0 +1,13 @@
+header.top {
+  background: var(--green);
+  color: #fff;
+  padding: 1rem;
+  a {
+    color: #fff;
+    padding: 1rem;
+    border: 1px solid transparent;
+    &.active {
+      border: 1px solid #fff;
+    }
+  }
+}
