@@ -31,7 +31,10 @@ const data = {
   solutions: [
     {
       id: "shortid",
-      postedBy: "shortid",
+      postedBy: {
+        id: "shortid",
+        name: "First Last"
+      },
       createdAt: Date.now,
       text: String
     }

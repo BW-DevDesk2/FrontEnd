@@ -7,6 +7,7 @@ import {
 } from "react-router-dom";
 
 import Header from "./components/header";
+import Tabs from "./components/tabs";
 
 class App extends Component {
   constructor() {
@@ -23,10 +24,10 @@ class App extends Component {
         <Router>
           <Header />
           <main>
-            {/* <Tabs /> */}
+            <Tabs />
             <Switch>
-              <Route path="/dashboard">
-                <h2>Dashboard</h2>
+              <Route path="/tickets">
+                <h2>My Tickets</h2>
                 <ol className="ticket-feed">
                   <li>Ticket 1</li>
                   <li>Ticket 2</li>
@@ -35,14 +36,6 @@ class App extends Component {
               </Route>
               <Route path="/login">
                 <h2>Login</h2>
-              </Route>
-              <Route path="/saved">
-                <h2>Saved Tickets</h2>
-                <ol className="saved-tickets">
-                  <li>Ticket 1</li>
-                  <li>Ticket 2</li>
-                  <li>Ticket 3</li>
-                </ol>
               </Route>
               <Route path="/signup">
                 <h2>Signup</h2>
@@ -55,7 +48,7 @@ class App extends Component {
                   <li>Ticket 3</li>
                 </ol>
               </Route>
-              <Route path="/user/:username">
+              <Route path="/user/:id">
                 <h2>UserProfile</h2>
                 <ol className="user-tickets">
                   <li>Ticket 1</li>
@@ -66,7 +59,7 @@ class App extends Component {
               <Route path={["/ticket/new", "/ticket/:id/edit", "/ticket/:id"]}>
                 <h2>Create / Edit / View Ticket</h2>
               </Route>
-              <Redirect to="/dashboard" />
+              <Redirect to="/tickets" />
             </Switch>
           </main>
         </Router>
