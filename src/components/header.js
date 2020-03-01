@@ -10,11 +10,11 @@ function Header(props) {
           <Link to="/">DevDesk</Link>
         </h1>
         <NavLink to="/saved">Saved Tickets</NavLink>
-        <NavLink to="/login">Login</NavLink>
-        <NavLink to="/signup">Signup</NavLink>
         <NavLink to="/search">Search</NavLink>
         <NavLink to="/user/username">User</NavLink>
         <NavLink to="/ticket/1">Ticket</NavLink>
+        <NavLink to="/login">Login</NavLink>
+        <NavLink to="/signup">Signup</NavLink>
         {/* <SearchBar /> */}
       </nav>
     </header>
