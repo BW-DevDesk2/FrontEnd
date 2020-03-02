@@ -6,7 +6,9 @@ import { useHistory } from "react-router-dom";
 function SignUpForm(props) {
   const history = useHistory();
   console.log(props);
-  const { handleSubmit, register, errors } = useForm();
+  const { handleSubmit, register, errors } = useForm({
+    defaultValues: { role: "Choose one" }
+  });
   const onSubmit = values => {
     console.log(values);
   };
@@ -28,7 +30,7 @@ function SignUpForm(props) {
             }
           })}
         />
-        {errors.email && errors.email.message}
+        <span className="error">{errors.email && errors.email.message}</span>
       </FormGroup>
       <FormGroup>
         <Label for="password">Password</Label>
@@ -42,9 +44,28 @@ function SignUpForm(props) {
             validate: value => value !== "password" || "Use a better password"
           })}
         />
-        {errors.password && errors.password.message}
+        <span className="error">
+          {errors.password && errors.password.message}
+        </span>
       </FormGroup>
-      {/* TODO: role selector */}
+      <FormGroup>
+        <Label for="select">Role</Label>
+        <select
+          id="select"
+          type="select"
+          name="role"
+          ref={register({
+            required: "Required",
+            validate: value => value !== "Choose one" || "Please select a role"
+          })}
+        >
+          <option disabled>Choose one</option>
+          <option>Student</option>
+          <option>Helper</option>
+          <option>Admin</option>
+        </select>
+        <span className="error">{errors.role && errors.role.message}</span>
+      </FormGroup>
       <Button
         type="submit"
         color="primary"
