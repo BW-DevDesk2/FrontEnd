@@ -6,9 +6,9 @@ function Login() {
 
   useEffect(() => {
     app.setState({ user: { id: 42 } });
-  }, []);
+  }, [app]);
 
-  return <h1>Logged In!!!</h1>;
+  return <h2>Logged In!!!</h2>;
 }
 
 export default Login;

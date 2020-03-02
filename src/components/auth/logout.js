@@ -6,9 +6,9 @@ function Logout() {
 
   useEffect(() => {
     app.setState({ user: null });
-  }, []);
+  }, [app]);
 
-  return <h1>Logout</h1>;
+  return <h2>Logged out</h2>;
 }
 
 export default Logout;
