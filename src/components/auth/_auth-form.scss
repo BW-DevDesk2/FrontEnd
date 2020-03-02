@@ -6,7 +6,8 @@ form.auth-form {
     display: block;
     width: 100%;
   }
-  span {
+  span.error {
     display: block;
+    color: red;
   }
 }

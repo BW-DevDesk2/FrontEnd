@@ -40,7 +40,7 @@ function LoginForm(props) {
             }
           })}
         />
-        {errors.email && errors.email.message}
+        <span className="error">{errors.email && errors.email.message}</span>
       </FormGroup>
       <FormGroup>
         <Label for="password">Password</Label>
@@ -54,7 +54,9 @@ function LoginForm(props) {
             validate: value => value !== "password" || "Use a better password"
           })}
         />
-        {errors.password && errors.password.message}
+        <span className="error">
+          {errors.password && errors.password.message}
+        </span>
       </FormGroup>
 
       <Button type="submit" color="primary" size="lg" block>
