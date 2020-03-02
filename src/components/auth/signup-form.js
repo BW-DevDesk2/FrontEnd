@@ -14,12 +14,27 @@ function SignUpForm(props) {
   return (
     <form className="form auth-form" onSubmit={handleSubmit(onSubmit)}>
       <FormGroup>
+        <Label for="name">Name</Label>
+        <input
+          className="form-control"
+          name="name"
+          type="name"
+          id="name"
+          placeholder="Your Name"
+          ref={register({
+            required: "Required"
+          })}
+        />
+        <span className="error">{errors.name && errors.name.message}</span>
+      </FormGroup>
+      <FormGroup>
         <Label for="email">Email</Label>
         <input
           className="form-control"
           name="email"
           type="email"
           id="email"
+          placeholder="you@example.com"
           ref={register({
             required: "Required",
             pattern: {
