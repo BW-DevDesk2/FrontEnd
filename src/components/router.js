@@ -4,6 +4,7 @@ import { BrowserRouter, Route, Redirect, Switch } from "react-router-dom";
 import PrivateRoute from "./auth/private-route";
 import Login from "./auth/login";
 import Logout from "./auth/logout";
+import SignUp from "./auth/signup";
 import Header from "./header";
 import Tabs from "./tabs";
 import Dashboard from "./dashboard";
@@ -22,7 +23,7 @@ function Router(props) {
             <Logout />
           </Route>
           <Route path="/signup">
-            <h2>Signup</h2>
+            <SignUp />
           </Route>
           {/* authenticated */}
           <PrivateRoute>

@@ -3,7 +3,7 @@ import { useForm } from "react-hook-form";
 import { Button, FormGroup, Label } from "reactstrap";
 import { useHistory } from "react-router-dom";
 
-function LoginForm(props) {
+function SignupForm(props) {
   const history = useHistory();
   console.log(props);
   const { handleSubmit, register, errors } = useForm();
@@ -45,19 +45,17 @@ function LoginForm(props) {
         {errors.password && errors.password.message}
       </FormGroup>
 
-      <Button type="submit" color="primary" size="lg" block>
-        Login
-      </Button>
       <Button
-        color="info"
+        type="submit"
+        color="primary"
         size="lg"
         block
         onClick={() => history.push("/signup")}
       >
-        Signup
+        Sign Up
       </Button>
     </form>
   );
 }
 
-export default LoginForm;
+export default SignupForm;
