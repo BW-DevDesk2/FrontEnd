@@ -1,6 +1,7 @@
 import React from "react";
 import { BrowserRouter, Route, Redirect, Switch } from "react-router-dom";
 
+import PrivateRoute from "./auth/private-route";
 import Header from "./header";
 import Tabs from "./tabs";
 import Dashboard from "./dashboard";
@@ -19,7 +20,7 @@ function Router() {
             <h2>Signup</h2>
           </Route>
           {/* authenticated */}
-          <Route>
+          <PrivateRoute>
             <Tabs />
             <Route path="/dashboard">
               <Dashboard />
@@ -44,8 +45,7 @@ function Router() {
               <h2>Create / Edit / View Ticket</h2>
             </Route>
             <Redirect to="/dashboard" />
-          </Route>
-          <Redirect to="/signup" />
+          </PrivateRoute>
         </Switch>
       </main>
     </BrowserRouter>

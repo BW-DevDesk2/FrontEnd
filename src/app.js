@@ -6,7 +6,7 @@ class App extends Component {
     super();
     app = this;
     this.state = {
-      user: null
+      user: {}
     };
   }
 
