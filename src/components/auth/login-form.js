@@ -1,4 +1,5 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext } from "react";
+import axios from "../../utils/axios";
 import { useForm } from "react-hook-form";
 import { Button, FormGroup, Label } from "reactstrap";
 
@@ -9,18 +10,13 @@ function LoginForm(props) {
   const { history } = props;
   const { handleSubmit, register, errors } = useForm();
 
-  const onSubmit = values => {
-    console.log(values);
-    const { email, password } = values;
-    setTimeout(() => {
-      console.log("simulated network response");
-      const user = {
-        id: 42,
-        email
-      };
+  const onSubmit = ({ email, password }) => {
+    axios.post("/api/login", { email, password }).then(response => {
+      console.log(response);
+      const user = response.data;
       app.setState({ user });
       history.push("/dashboard");
-    }, 500);
+    });
   };
 
   return (

@@ -1,14 +1,23 @@
-import React from "react";
+import React, { useContext } from "react";
+import axios from "../../utils/axios";
 import { useForm } from "react-hook-form";
 import { Button, FormGroup, Label } from "reactstrap";
 
+import { AppContext } from "../../app";
+
 function SignUpForm(props) {
+  const app = useContext(AppContext);
   const { history } = props;
   const { handleSubmit, register, errors } = useForm({
     defaultValues: { role: "Choose one" }
   });
-  const onSubmit = values => {
-    console.log(values);
+  const onSubmit = ({ name, email, password }) => {
+    axios.post("/api/register", { name, email, password }).then(response => {
+      console.log(response);
+      const user = response.data;
+      app.setState({ user });
+      history.push("/dashboard");
+    });
   };
 
   return (
@@ -61,7 +70,7 @@ function SignUpForm(props) {
           {errors.password && errors.password.message}
         </span>
       </FormGroup>
-      <FormGroup>
+      {/* <FormGroup>
         <Label for="select">Role</Label>
         <select
           id="select"
@@ -79,7 +88,7 @@ function SignUpForm(props) {
           <option>Admin</option>
         </select>
         <span className="error">{errors.role && errors.role.message}</span>
-      </FormGroup>
+      </FormGroup> */}
       <Button type="submit" color="primary" size="lg" block>
         Sign Up
       </Button>
