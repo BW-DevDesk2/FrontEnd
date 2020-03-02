@@ -17,16 +17,12 @@ function Router(props) {
         <Switch>
           {/* unauthenticated */}
           <Route path="/login" component={LoginForm} />
-          <Route path="/logout">
-            <Logout />
-          </Route>
+          <Route path="/logout" component={Logout} />
           <Route path="/signup" component={SignUpForm} />
           {/* authenticated */}
           <PrivateRoute>
             <Tabs />
-            <Route path="/dashboard">
-              <Dashboard />
-            </Route>
+            <Route path="/dashboard" component={Dashboard} />
             <Route path={["/search/:term/:page", "/search/:term", "/search"]}>
               <h2>Search</h2>
               <ol className="search-results">
@@ -46,7 +42,6 @@ function Router(props) {
             <Route path={["/ticket/new", "/ticket/:id/edit", "/ticket/:id"]}>
               <h2>Create / Edit / View Ticket</h2>
             </Route>
-            <Redirect to="/dashboard" />
           </PrivateRoute>
         </Switch>
       </main>
