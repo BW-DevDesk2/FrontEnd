@@ -52,6 +52,7 @@ function SignUpForm(props) {
         <Label for="select">Role</Label>
         <select
           id="select"
+          className="form-control"
           type="select"
           name="role"
           ref={register({
