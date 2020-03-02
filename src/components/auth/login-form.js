@@ -1,14 +1,26 @@
-import React from "react";
+import React, { useContext, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { Button, FormGroup, Label } from "reactstrap";
-import { useHistory } from "react-router-dom";
+
+import { AppContext } from "../../app";
 
 function LoginForm(props) {
-  const history = useHistory();
-  console.log(props);
+  const app = useContext(AppContext);
+  const { history } = props;
   const { handleSubmit, register, errors } = useForm();
+
   const onSubmit = values => {
     console.log(values);
+    const { email, password } = values;
+    setTimeout(() => {
+      console.log("simulated network response");
+      const user = {
+        id: 42,
+        email
+      };
+      app.setState({ user });
+      history.push("/dashboard");
+    }, 500);
   };
 
   return (
@@ -39,7 +51,7 @@ function LoginForm(props) {
           id="password"
           ref={register({
             required: "Required",
-            validate: value => value !== "password" || "Nice try!"
+            validate: value => value !== "password" || "Use a better password"
           })}
         />
         {errors.password && errors.password.message}
@@ -54,7 +66,7 @@ function LoginForm(props) {
         block
         onClick={() => history.push("/signup")}
       >
-        Signup
+        Sign Up
       </Button>
     </form>
   );

@@ -3,7 +3,7 @@ import { useForm } from "react-hook-form";
 import { Button, FormGroup, Label } from "reactstrap";
 import { useHistory } from "react-router-dom";
 
-function SignupForm(props) {
+function SignUpForm(props) {
   const history = useHistory();
   console.log(props);
   const { handleSubmit, register, errors } = useForm();
@@ -39,12 +39,12 @@ function SignupForm(props) {
           id="password"
           ref={register({
             required: "Required",
-            validate: value => value !== "password" || "Nice try!"
+            validate: value => value !== "password" || "Use a better password"
           })}
         />
         {errors.password && errors.password.message}
       </FormGroup>
-
+      {/* TODO: role selector */}
       <Button
         type="submit"
         color="primary"
@@ -58,4 +58,4 @@ function SignupForm(props) {
   );
 }
 
-export default SignupForm;
+export default SignUpForm;

@@ -2,9 +2,9 @@ import React from "react";
 import { BrowserRouter, Route, Redirect, Switch } from "react-router-dom";
 
 import PrivateRoute from "./auth/private-route";
-import Login from "./auth/login";
+import LoginForm from "./auth/login-form";
 import Logout from "./auth/logout";
-import SignUp from "./auth/signup";
+import SignUpForm from "./auth/signup-form";
 import Header from "./header";
 import Tabs from "./tabs";
 import Dashboard from "./dashboard";
@@ -16,15 +16,11 @@ function Router(props) {
       <main>
         <Switch>
           {/* unauthenticated */}
-          <Route path="/login">
-            <Login />
-          </Route>
+          <Route path="/login" component={LoginForm} />
           <Route path="/logout">
             <Logout />
           </Route>
-          <Route path="/signup">
-            <SignUp />
-          </Route>
+          <Route path="/signup" component={SignUpForm} />
           {/* authenticated */}
           <PrivateRoute>
             <Tabs />
