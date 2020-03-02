@@ -8,6 +8,7 @@ import {
 
 import Header from "./components/header";
 import Tabs from "./components/tabs";
+import MyTickets from "./components/my-tickets";
 
 class App extends Component {
   constructor() {
@@ -27,12 +28,7 @@ class App extends Component {
             <Tabs />
             <Switch>
               <Route path="/tickets">
-                <h2>My Tickets</h2>
-                <ol className="ticket-feed">
-                  <li>Ticket 1</li>
-                  <li>Ticket 2</li>
-                  <li>Ticket 3</li>
-                </ol>
+                <MyTickets />
               </Route>
               <Route path="/login">
                 <h2>Login</h2>
@@ -50,7 +46,7 @@ class App extends Component {
               </Route>
               <Route path="/user/:id">
                 <h2>UserProfile</h2>
-                <ol className="user-tickets">
+                <ol className="ticket-list">
                   <li>Ticket 1</li>
                   <li>Ticket 2</li>
                   <li>Ticket 3</li>
