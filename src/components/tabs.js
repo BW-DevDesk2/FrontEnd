@@ -7,7 +7,7 @@ function Tabs(props) {
     <nav className="tabs">
       <NavLink to="/tickets">Tickets</NavLink>
       <NavLink to="/search">Search</NavLink>
-      <NavLink to="/user/username">User</NavLink>
+      <NavLink to="/user/id">User</NavLink>
       <NavLink to="/ticket/1">Ticket</NavLink>
     </nav>
   );
