@@ -1,11 +1,9 @@
 import React from "react";
 import { useForm } from "react-hook-form";
 import { Button, FormGroup, Label } from "reactstrap";
-import { useHistory } from "react-router-dom";
 
 function SignUpForm(props) {
-  const history = useHistory();
-  console.log(props);
+  const { history } = props;
   const { handleSubmit, register, errors } = useForm({
     defaultValues: { role: "Choose one" }
   });
@@ -67,13 +65,7 @@ function SignUpForm(props) {
         </select>
         <span className="error">{errors.role && errors.role.message}</span>
       </FormGroup>
-      <Button
-        type="submit"
-        color="primary"
-        size="lg"
-        block
-        onClick={() => history.push("/signup")}
-      >
+      <Button type="submit" color="primary" size="lg" block>
         Sign Up
       </Button>
     </form>
