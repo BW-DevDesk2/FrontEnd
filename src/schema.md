@@ -1,3 +1,4 @@
+```javascript
 const data = {
   user: {
     id: "shortid",
@@ -40,3 +41,4 @@ const data = {
     }
   ]
 };
+```
