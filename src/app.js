@@ -15,5 +15,5 @@ class App extends Component {
   }
 }
 
-export let app;
+export let app; // TODO: replace with Context API
 export default App;
