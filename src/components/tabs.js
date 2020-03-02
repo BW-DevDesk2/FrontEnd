@@ -5,7 +5,7 @@ function Tabs(props) {
   console.log("props", props);
   return (
     <nav className="tabs">
-      <NavLink to="/tickets">Tickets</NavLink>
+      <NavLink to="/dashboard">Dashboard</NavLink>
       <NavLink to="/search">Search</NavLink>
       <NavLink to="/user/id">User</NavLink>
       <NavLink to="/ticket/1">Ticket</NavLink>

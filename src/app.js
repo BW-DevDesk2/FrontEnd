@@ -8,7 +8,7 @@ import {
 
 import Header from "./components/header";
 import Tabs from "./components/tabs";
-import MyTickets from "./components/my-tickets";
+import Dashboard from "./components/dashboard";
 
 class App extends Component {
   constructor() {
@@ -27,8 +27,8 @@ class App extends Component {
           <main>
             <Tabs />
             <Switch>
-              <Route path="/tickets">
-                <MyTickets />
+              <Route path="/dashboard">
+                <Dashboard />
               </Route>
               <Route path="/login">
                 <h2>Login</h2>

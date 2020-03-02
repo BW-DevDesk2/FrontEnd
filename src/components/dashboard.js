@@ -1,8 +1,8 @@
 import React from "react";
 
-function MyTickets(props) {
+function Dashboard(props) {
   return (
-    <div className="my-tickets">
+    <div className="dashboard">
       <h2>My Tickets</h2>
       <ol className="ticket-list">
         <li>Ticket 1</li>
@@ -19,4 +19,4 @@ function MyTickets(props) {
   );
 }
 
-export default MyTickets;
+export default Dashboard;
