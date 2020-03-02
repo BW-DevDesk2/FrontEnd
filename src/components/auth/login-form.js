@@ -1,7 +1,7 @@
 import React from "react";
 import { useForm } from "react-hook-form";
 
-function Form(props) {
+function LoginForm(props) {
   const { handleSubmit, register, errors } = useForm();
   const onSubmit = values => {
     console.log(values);
@@ -35,4 +35,4 @@ function Form(props) {
   );
 }
 
-export default Form;
+export default LoginForm;
