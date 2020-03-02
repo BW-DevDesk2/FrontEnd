@@ -14,9 +14,7 @@ function Header(props) {
         </h1>
         <div>
           {user ? (
-            <>
-              <Link to="/logout">Logout</Link>
-            </>
+            <Link to="/logout">Logout</Link>
           ) : (
             <>
               <Link to="/login">Login</Link>
