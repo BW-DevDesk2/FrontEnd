@@ -21,54 +21,48 @@ class App extends Component {
 
   render() {
     return (
-      <div className="app">
-        <Router>
-          <Header />
-          <main>
-            <Switch>
-              {/* unauthenticated */}
-              <Route path="/login">
-                <h2>Login</h2>
+      <Router>
+        <Header />
+        <main>
+          <Switch>
+            {/* unauthenticated */}
+            <Route path="/login">
+              <h2>Login</h2>
+            </Route>
+            <Route path="/signup">
+              <h2>Signup</h2>
+            </Route>
+            {/* authenticated */}
+            <Route>
+              <Tabs />
+              <Route path="/dashboard">
+                <Dashboard />
               </Route>
-              <Route path="/signup">
-                <h2>Signup</h2>
+              <Route path={["/search/:term/:page", "/search/:term", "/search"]}>
+                <h2>Search</h2>
+                <ol className="search-results">
+                  <li>Ticket 1</li>
+                  <li>Ticket 2</li>
+                  <li>Ticket 3</li>
+                </ol>
               </Route>
-              {/* authenticated */}
-              <Route>
-                <Tabs />
-                <Route path="/dashboard">
-                  <Dashboard />
-                </Route>
-                <Route
-                  path={["/search/:term/:page", "/search/:term", "/search"]}
-                >
-                  <h2>Search</h2>
-                  <ol className="search-results">
-                    <li>Ticket 1</li>
-                    <li>Ticket 2</li>
-                    <li>Ticket 3</li>
-                  </ol>
-                </Route>
-                <Route path="/user/:id">
-                  <h2>UserProfile</h2>
-                  <ol className="ticket-list">
-                    <li>Ticket 1</li>
-                    <li>Ticket 2</li>
-                    <li>Ticket 3</li>
-                  </ol>
-                </Route>
-                <Route
-                  path={["/ticket/new", "/ticket/:id/edit", "/ticket/:id"]}
-                >
-                  <h2>Create / Edit / View Ticket</h2>
-                </Route>
-                <Redirect to="/dashboard" />
+              <Route path="/user/:id">
+                <h2>UserProfile</h2>
+                <ol className="ticket-list">
+                  <li>Ticket 1</li>
+                  <li>Ticket 2</li>
+                  <li>Ticket 3</li>
+                </ol>
               </Route>
-              <Redirect to="/signup" />
-            </Switch>
-          </main>
-        </Router>
-      </div>
+              <Route path={["/ticket/new", "/ticket/:id/edit", "/ticket/:id"]}>
+                <h2>Create / Edit / View Ticket</h2>
+              </Route>
+              <Redirect to="/dashboard" />
+            </Route>
+            <Redirect to="/signup" />
+          </Switch>
+        </main>
+      </Router>
     );
   }
 }
