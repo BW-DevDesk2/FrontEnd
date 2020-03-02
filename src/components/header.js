@@ -1,7 +1,11 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
+import { AppContext } from "../app";
 
 function Header(props) {
+  const app = useContext(AppContext);
+  const { user } = app.state;
+
   return (
     <header className="top">
       <nav>
@@ -9,8 +13,16 @@ function Header(props) {
           <Link to="/">DevDesk</Link>
         </h1>
         <div>
-          <Link to="/login">Login</Link>
-          <Link to="/signup">Signup</Link>
+          {user ? (
+            <>
+              <Link to="/logout">Logout</Link>
+            </>
+          ) : (
+            <>
+              <Link to="/login">Login</Link>
+              <Link to="/signup">Signup</Link>
+            </>
+          )}
         </div>
         {/* <SearchBar /> */}
       </nav>

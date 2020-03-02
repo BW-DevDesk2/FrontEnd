@@ -1,12 +1,14 @@
 // https://reacttraining.com/react-router/web/api/Redirect
 
-import React from "react";
+import React, { useContext } from "react";
 import { Route, Redirect } from "react-router-dom";
 
-import { app } from "../../app";
+import { AppContext } from "../../app";
 
 function PrivateRoute({ children, ...rest }) {
+  const app = useContext(AppContext);
   const { user } = app.state;
+
   return (
     <Route
       {...rest}
@@ -16,7 +18,7 @@ function PrivateRoute({ children, ...rest }) {
         ) : (
           <Redirect
             to={{
-              pathname: "/login",
+              pathname: "/signup",
               state: { from: location }
             }}
           />

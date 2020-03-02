@@ -2,11 +2,13 @@ import React from "react";
 import { BrowserRouter, Route, Redirect, Switch } from "react-router-dom";
 
 import PrivateRoute from "./auth/private-route";
+import Login from "./auth/login";
+import Logout from "./auth/logout";
 import Header from "./header";
 import Tabs from "./tabs";
 import Dashboard from "./dashboard";
 
-function Router() {
+function Router(props) {
   return (
     <BrowserRouter>
       <Header />
@@ -14,7 +16,10 @@ function Router() {
         <Switch>
           {/* unauthenticated */}
           <Route path="/login">
-            <h2>Login</h2>
+            <Login />
+          </Route>
+          <Route path="/logout">
+            <Logout />
           </Route>
           <Route path="/signup">
             <h2>Signup</h2>
