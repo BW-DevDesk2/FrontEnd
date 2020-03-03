@@ -27,6 +27,7 @@ class App extends Component {
   getAuth() {
     const { user } = this.state;
     return {
+      user,
       login: this.login.bind(this),
       logout: this.logout.bind(this),
       axios: axios.create({
