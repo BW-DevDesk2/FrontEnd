@@ -13,6 +13,7 @@ function SignUpForm(props) {
 
   const onSubmit = values => {
     console.log(values);
+    delete values.role; // delete role until backend can handle it
     axios.post("/api/register", values).then(response => {
       console.log(response);
       const user = response.data;
@@ -74,7 +75,7 @@ function SignUpForm(props) {
           {errors.password && errors.password.message}
         </span>
       </FormGroup>
-      {/* <FormGroup>
+      <FormGroup>
         <Label for="select">Role</Label>
         <select
           id="select"
@@ -92,7 +93,7 @@ function SignUpForm(props) {
           <option>Admin</option>
         </select>
         <span className="error">{errors.role && errors.role.message}</span>
-      </FormGroup> */}
+      </FormGroup>
       <Button type="submit" color="primary" size="lg" block>
         Sign Up
       </Button>
