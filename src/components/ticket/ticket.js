@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useHistory } from "react-router-dom";
 import {
   Card,
   CardText,
@@ -14,6 +14,7 @@ import { AuthContext } from "../../app";
 function Ticket() {
   const { axios } = useContext(AuthContext)();
   const { id } = useParams();
+  const history = useHistory();
   const [ticket, setTicket] = useState();
 
   useEffect(() => {
@@ -35,7 +36,9 @@ function Ticket() {
     axios.put(`/api/tickets/${id}`, update).then(() => setTicket(update));
   };
 
-  // const deleteTicket = () => {};
+  const deleteTicket = () => {
+    axios.delete(`/api/tickets/${id}`).then(() => history.push("/dashboard"));
+  };
 
   if (!ticket) return <Spinner color="primary" />;
 
@@ -51,7 +54,9 @@ function Ticket() {
         <Button color="success" onClick={toggleResolved}>
           {statusesid === 2 ? "Resolved" : "Resolve"}
         </Button>
-        <Button color="danger">Delete</Button>
+        <Button color="danger" onClick={deleteTicket}>
+          Delete
+        </Button>
       </CardBody>
     </Card>
   );
