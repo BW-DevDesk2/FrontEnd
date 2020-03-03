@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import { AuthContext } from "../../app";
 
 function Logout() {
-  const { logout } = useContext(AuthContext);
+  const { logout } = useContext(AuthContext)();
 
   try {
     localStorage.removeItem("user");

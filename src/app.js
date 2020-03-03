@@ -14,15 +14,6 @@ class App extends Component {
     this.state = {
       user
     };
-
-    this.auth = {
-      login: this.login.bind(this),
-      logout: this.logout.bind(this),
-      axios: axios.create({
-        // axios config
-        baseURL: "https://devdesk2eli.herokuapp.com/"
-      })
-    };
   }
 
   login(user) {
@@ -33,10 +24,25 @@ class App extends Component {
     this.setState({ user: null });
   }
 
+  auth() {
+    const { user } = this.state;
+    return {
+      login: this.login.bind(this),
+      logout: this.logout.bind(this),
+      axios: axios.create({
+        // axios config
+        baseURL: "https://devdesk2eli.herokuapp.com/",
+        headers: {
+          authorization: user && user.token
+        }
+      })
+    };
+  }
+
   render() {
     return (
       <AppContext.Provider value={this}>
-        <AuthContext.Provider value={this.auth}>
+        <AuthContext.Provider value={this.auth.bind(this)}>
           <UserContext.Provider value={this.state.user}>
             <Router />
           </UserContext.Provider>

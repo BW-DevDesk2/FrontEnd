@@ -9,6 +9,8 @@ import Header from "./header";
 import Tabs from "./tabs";
 import Dashboard from "./dashboard";
 
+import Ticket from "./ticket/ticket";
+
 function Router(props) {
   return (
     <BrowserRouter>
@@ -41,6 +43,7 @@ function Router(props) {
             </Route>
             <Route path={["/ticket/new", "/ticket/:id/edit", "/ticket/:id"]}>
               <h2>Create / Edit / View Ticket</h2>
+              <Ticket />
             </Route>
             <Route exact path="/">
               <Redirect to="/dashboard" />

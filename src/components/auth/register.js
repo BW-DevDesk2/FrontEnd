@@ -5,7 +5,7 @@ import { Button, FormGroup, Label } from "reactstrap";
 import { AuthContext } from "../../app";
 
 function SignUpForm(props) {
-  const { axios, login } = useContext(AuthContext);
+  const { axios, login } = useContext(AuthContext)();
   const { history } = props;
   const { handleSubmit, register, errors } = useForm({
     defaultValues: { role: "Choose one" }
