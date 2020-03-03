@@ -8,6 +8,7 @@ import SignUpForm from "./auth/register";
 import Header from "./header";
 import Tabs from "./tabs";
 import Dashboard from "./dashboard";
+import UserProfile from "./UserProfile";
 
 import Ticket from "./ticket/ticket";
 
@@ -34,6 +35,7 @@ function Router(props) {
               </ol>
             </Route>
             <Route path="/user/:id">
+              <UserProfile />
               <h2>UserProfile</h2>
               <ol className="ticket-list">
                 <li>Ticket 1</li>

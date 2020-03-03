@@ -1,16 +1,17 @@
 import React, { useState, useEffect, useContext } from "react";
 import { useParams } from "react-router-dom";
-import { AuthContext } from "../../app";
+import { AuthContext } from "../app";
 
 function UserProfile(props) {
-  const [user, setUser] = useState("");
-  const params = useParams();
+  const [user, setUser] = useState([]);
+  const { id } = useParams();
+  console.log(id);
   const { axios } = useContext(AuthContext)();
 
   useEffect(() => {
     const getUser = () => {
       axios
-        .get("https://devdesk2eli.herokuapp.com/api/users/:params")
+        .get(`/api/users/`)
         .then(response => {
           console.log(response);
           setUser(response);
@@ -26,10 +27,9 @@ function UserProfile(props) {
     <div>
       <div></div>
       <h1>My Profile</h1>
-      <h2>{props.name}</h2>
-      <h3>Email: </h3>
-      <p>Date Joined: </p>
-      <p>Settings: </p>
+      <h2>{user.userid}</h2>
+      <h3>Email: {user.email}</h3>
+      <h3></h3>
     </div>
   );
 }
