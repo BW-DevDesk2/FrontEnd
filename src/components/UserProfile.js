@@ -6,12 +6,13 @@ function UserProfile(props) {
   const [user, setUser] = useState([]);
   const { id } = useParams();
   console.log(id);
+  console.log(props);
   const { axios } = useContext(AuthContext)();
 
   useEffect(() => {
     const getUser = () => {
       axios
-        .get(`/api/users/${id}`)
+        .get(`/api/users/`)
         .then(({ data }) => {
           console.log(data);
           setUser(data);
