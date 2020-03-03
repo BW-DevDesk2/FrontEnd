@@ -3,11 +3,10 @@
 import React, { useContext } from "react";
 import { Route, Redirect } from "react-router-dom";
 
-import { AppContext } from "../../app";
+import { UserContext } from "../../app";
 
 function PrivateRoute({ children, ...rest }) {
-  const app = useContext(AppContext);
-  const { user } = app.state;
+  const user = useContext(UserContext);
 
   return (
     <Route
@@ -18,7 +17,7 @@ function PrivateRoute({ children, ...rest }) {
         ) : (
           <Redirect
             to={{
-              pathname: "/signup",
+              pathname: "/login",
               state: { from: location }
             }}
           />

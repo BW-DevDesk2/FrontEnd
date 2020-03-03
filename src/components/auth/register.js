@@ -1,22 +1,26 @@
 import React, { useContext } from "react";
-import axios from "../../utils/axios";
 import { useForm } from "react-hook-form";
 import { Button, FormGroup, Label } from "reactstrap";
 
-import { AppContext } from "../../app";
+import { AuthContext } from "../../app";
 
 function SignUpForm(props) {
-  const app = useContext(AppContext);
+  const { axios, login } = useContext(AuthContext)();
   const { history } = props;
   const { handleSubmit, register, errors } = useForm({
     defaultValues: { role: "Choose one" }
   });
-  const onSubmit = ({ name, email, password }) => {
-    axios.post("/api/register", { name, email, password }).then(response => {
+
+  const onSubmit = values => {
+    console.log(values);
+    axios.post("/api/register", values).then(response => {
       console.log(response);
       const user = response.data;
-      app.setState({ user });
+      login(user);
       history.push("/dashboard");
+      try {
+        localStorage.setItem("user", JSON.stringify(user));
+      } catch {}
     });
   };
 
