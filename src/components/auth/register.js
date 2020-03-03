@@ -11,8 +11,10 @@ function SignUpForm(props) {
   const { handleSubmit, register, errors } = useForm({
     defaultValues: { role: "Choose one" }
   });
-  const onSubmit = ({ name, email, password }) => {
-    axios.post("/api/register", { name, email, password }).then(response => {
+
+  const onSubmit = values => {
+    console.log(values);
+    axios.post("/api/register", values).then(response => {
       console.log(response);
       const user = response.data;
       app.setState({ user });

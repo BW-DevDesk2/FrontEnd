@@ -10,8 +10,9 @@ function LoginForm(props) {
   const { history } = props;
   const { handleSubmit, register, errors } = useForm();
 
-  const onSubmit = ({ email, password }) => {
-    axios.post("/api/login", { email, password }).then(response => {
+  const onSubmit = values => {
+    console.log(values);
+    axios.post("/api/login", values).then(response => {
       console.log(response);
       const user = response.data;
       app.setState({ user });
