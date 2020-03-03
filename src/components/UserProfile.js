@@ -11,10 +11,10 @@ function UserProfile(props) {
   useEffect(() => {
     const getUser = () => {
       axios
-        .get(`/api/users/`)
-        .then(response => {
-          console.log(response);
-          setUser(response);
+        .get(`/api/users/${id}`)
+        .then(({ data }) => {
+          console.log(data);
+          setUser(data);
         })
         .catch(error => {
           console.log("Error: ", error);
