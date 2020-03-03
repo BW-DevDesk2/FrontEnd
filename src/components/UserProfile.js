@@ -4,8 +4,7 @@ import { AuthContext } from "../app";
 
 function UserProfile(props) {
   const [user, setUser] = useState([]);
-  const { id } = useParams();
-  console.log("This is the paramater being passed in: ", id);
+  const [roles, setRoles] = useState([]);
   const { axios } = useContext(AuthContext)();
 
   // Grab current user that's logged in
@@ -30,12 +29,31 @@ function UserProfile(props) {
     getUser();
   }, []);
 
+  useEffect(() => {
+    const getRoles = () => {
+      axios
+        .get(`/api/roles/${userID}`)
+        .then(data => {
+          console.log(data);
+          //setRoles(data);
+        })
+        .catch(error => {
+          console.log("Error retrieving roles: ", error);
+        });
+    };
+    getRoles();
+  }, []);
+
   return (
     <div>
       <h1>My Profile</h1>
-      <h3>Name: {user.name}</h3>
-      <h3>User ID: {user.usersid}</h3>
-      <h3>Email: {user.email}</h3>
+      <b>Name: </b>
+      {user.name}
+      <br></br>
+      <b>Role: </b>
+      {roles}
+      <br></br>
+      <b>Email: </b> {user.email}
     </div>
   );
 }
