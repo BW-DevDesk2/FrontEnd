@@ -34,7 +34,7 @@ function Router(props) {
                 <li>Ticket 3</li>
               </ol>
             </Route>
-            <Route path="/user/:id">
+            <Route path="/profile">
               <UserProfile />
               <h2>UserProfile</h2>
               <ol className="ticket-list">

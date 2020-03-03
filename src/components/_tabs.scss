@@ -7,10 +7,16 @@ nav.tabs {
     border-top-left-radius: 0.25rem;
     border-top-right-radius: 0.25rem;
     margin-bottom: -2px;
+    &.display-active {
+      display: none;
+    }
     &.active {
       background: var(--background-color);
       border: 2px solid #8ea5a7;
       border-bottom: none;
+      &.display-active {
+        display: block;
+      }
     }
   }
   border-bottom: 2px solid #8ea5a7;
