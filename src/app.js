@@ -24,7 +24,7 @@ class App extends Component {
     this.setState({ user: null });
   }
 
-  auth() {
+  getAuth() {
     const { user } = this.state;
     return {
       login: this.login.bind(this),
@@ -42,7 +42,7 @@ class App extends Component {
   render() {
     return (
       <AppContext.Provider value={this}>
-        <AuthContext.Provider value={this.auth.bind(this)}>
+        <AuthContext.Provider value={this.getAuth.bind(this)}>
           <UserContext.Provider value={this.state.user}>
             <Router />
           </UserContext.Provider>
