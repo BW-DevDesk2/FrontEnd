@@ -1,15 +1,13 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext } from "react";
 import { AppContext } from "../../app";
 
 function Logout() {
   const app = useContext(AppContext);
 
-  useEffect(() => {
-    try {
-      localStorage.removeItem("user");
-    } catch {}
-    app.setState({ user: null });
-  }, []);
+  try {
+    localStorage.removeItem("user");
+  } catch {}
+  app.setState({ user: null });
 
   return <h2>Logged out</h2>;
 }
