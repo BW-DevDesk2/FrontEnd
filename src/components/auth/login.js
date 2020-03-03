@@ -1,5 +1,4 @@
 import React, { useContext } from "react";
-import { Redirect } from "react-router-dom";
 import axios from "../../utils/axios";
 import { useForm } from "react-hook-form";
 import { Button, FormGroup, Label } from "reactstrap";
