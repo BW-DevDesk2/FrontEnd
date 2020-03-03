@@ -5,7 +5,7 @@ function Tabs(props) {
   return (
     <nav className="tabs">
       <NavLink to="/dashboard">Dashboard</NavLink>
-      <NavLink to="/search">Search</NavLink>
+      <NavLink to="/create-ticket">Create Ticket</NavLink>
       <NavLink to="/profile">Profile</NavLink>
       <NavLink to="/ticket" className="display-active">
         Ticket
