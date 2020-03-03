@@ -24,6 +24,7 @@ function TicketQueue() {
         {tickets.map(t => (
           <li key={t.ticketsid}>
             <Link to={`/ticket/${t.ticketsid}`}>{t.title}</Link>
+            <p>{t.description}</p>
           </li>
         ))}
       </ol>
