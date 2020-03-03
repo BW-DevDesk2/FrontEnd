@@ -4,6 +4,7 @@ import { AuthContext } from "../../app";
 
 function Ticket() {
   const { axios } = useContext(AuthContext)();
+  console.log(axios);
 
   useEffect(() => {
     axios.get("/api/tickets").then(response => console.log(response));
