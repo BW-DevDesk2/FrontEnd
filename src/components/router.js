@@ -42,6 +42,9 @@ function Router(props) {
             <Route path={["/ticket/new", "/ticket/:id/edit", "/ticket/:id"]}>
               <h2>Create / Edit / View Ticket</h2>
             </Route>
+            <Route exact path="/">
+              <Redirect to="/dashboard" />
+            </Route>
           </PrivateRoute>
         </Switch>
       </main>
