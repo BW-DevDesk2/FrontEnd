@@ -1,11 +1,12 @@
 import React, { useContext, useEffect, useState } from "react";
+import { Spinner } from "reactstrap";
 import { Link } from "react-router-dom";
 
 import { AuthContext } from "../../app";
 
 function TicketQueue() {
   const { axios } = useContext(AuthContext)();
-  const [tickets, setTickets] = useState([]);
+  const [tickets, setTickets] = useState();
 
   useEffect(() => {
     axios.get("/api/tickets/queue").then(({ data }) => {
@@ -13,6 +14,8 @@ function TicketQueue() {
       setTickets(data);
     });
   }, []);
+
+  if (!tickets) return <Spinner color="primary" />;
 
   return (
     <>
