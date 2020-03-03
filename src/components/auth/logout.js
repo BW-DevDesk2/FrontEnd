@@ -1,13 +1,13 @@
 import React, { useContext } from "react";
-import { AppContext } from "../../app";
+import { AuthContext } from "../../app";
 
 function Logout() {
-  const app = useContext(AppContext);
+  const { logout } = useContext(AuthContext);
 
   try {
     localStorage.removeItem("user");
   } catch {}
-  app.setState({ user: null });
+  logout();
 
   return <h2>Logged out</h2>;
 }

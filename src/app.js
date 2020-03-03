@@ -12,19 +12,35 @@ class App extends Component {
     this.state = {
       user
     };
+
+    this.auth = {
+      login: this.login.bind(this),
+      logout: this.logout.bind(this)
+    };
+  }
+
+  login(user) {
+    this.setState({ user });
+  }
+
+  logout() {
+    this.setState({ user: null });
   }
 
   render() {
     return (
       <AppContext.Provider value={this}>
-        <UserContext.Provider value={this.state.user}>
-          <Router />
-        </UserContext.Provider>
+        <AuthContext.Provider value={this.auth}>
+          <UserContext.Provider value={this.state.user}>
+            <Router />
+          </UserContext.Provider>
+        </AuthContext.Provider>
       </AppContext.Provider>
     );
   }
 }
 
 export const AppContext = React.createContext();
+export const AuthContext = React.createContext();
 export const UserContext = React.createContext();
 export default App;
