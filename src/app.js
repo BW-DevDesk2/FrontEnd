@@ -1,4 +1,6 @@
 import React, { Component } from "react";
+import axios from "axios";
+
 import Router from "./components/router";
 
 class App extends Component {
@@ -15,7 +17,11 @@ class App extends Component {
 
     this.auth = {
       login: this.login.bind(this),
-      logout: this.logout.bind(this)
+      logout: this.logout.bind(this),
+      axios: axios.create({
+        // axios config
+        baseURL: "https://devdesk2eli.herokuapp.com/"
+      })
     };
   }
 

@@ -1,12 +1,11 @@
 import React, { useContext } from "react";
-import axios from "../../utils/axios";
 import { useForm } from "react-hook-form";
 import { Button, FormGroup, Label } from "reactstrap";
 
 import { AuthContext } from "../../app";
 
 function SignUpForm(props) {
-  const { login } = useContext(AuthContext);
+  const { axios, login } = useContext(AuthContext);
   const { history } = props;
   const { handleSubmit, register, errors } = useForm({
     defaultValues: { role: "Choose one" }
