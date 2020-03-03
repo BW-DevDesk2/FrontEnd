@@ -1,13 +1,15 @@
 import React, { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
 import axios from "axios";
 
 function UserProfile(props) {
   const [user, setUser] = useState("");
+  const params = useParams();
 
   useEffect(() => {
     const getUser = () => {
       axios
-        .get("https://devdesk2eli.herokuapp.com/api/users/:id")
+        .get("https://devdesk2eli.herokuapp.com/api/users/:params")
         .then(response => {
           console.log(response);
           setUser(response);
