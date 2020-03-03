@@ -5,8 +5,11 @@ function Logout() {
   const app = useContext(AppContext);
 
   useEffect(() => {
+    try {
+      localStorage.removeItem("user");
+    } catch {}
     app.setState({ user: null });
-  }, [app]);
+  }, []);
 
   return <h2>Logged out</h2>;
 }
