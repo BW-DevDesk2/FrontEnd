@@ -12,7 +12,7 @@ import {
 import { AuthContext } from "../../app";
 
 function Ticket() {
-  const { axios } = useContext(AuthContext)();
+  const { axios, user } = useContext(AuthContext)();
   const { id } = useParams();
   const history = useHistory();
   const [ticket, setTicket] = useState();
