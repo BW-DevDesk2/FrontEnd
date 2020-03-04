@@ -18,9 +18,6 @@ function SignUpForm(props) {
       const user = response.data;
       login(user);
       history.push("/dashboard");
-      try {
-        localStorage.setItem("user", JSON.stringify(user));
-      } catch {}
     });
   };
 

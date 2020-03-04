@@ -16,9 +16,6 @@ function LoginForm(props) {
         const user = response.data;
         login(user);
         history.push("/dashboard");
-        try {
-          localStorage.setItem("user", JSON.stringify(user));
-        } catch {}
       })
       .catch(({ response }) => {
         if (response.status === 401) {
