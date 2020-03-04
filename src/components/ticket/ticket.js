@@ -1,13 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import { useParams, useHistory } from "react-router-dom";
-import {
-  Card,
-  CardText,
-  CardBody,
-  CardTitle,
-  Button,
-  Spinner
-} from "reactstrap";
+import { Card, CardText, CardBody, Button, Spinner } from "reactstrap";
 
 import { AuthContext } from "../../app";
 
