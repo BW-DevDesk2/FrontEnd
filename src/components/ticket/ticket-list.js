@@ -1,11 +1,12 @@
 import React, { useContext, useEffect, useState } from "react";
-import { Spinner } from "reactstrap";
-import { Link } from "react-router-dom";
+import { ListGroup, ListGroupItem, Spinner } from "reactstrap";
+import { Link, useHistory } from "react-router-dom";
 
 import { AuthContext } from "../../app";
 
 function TicketList(props) {
   const { axios } = useContext(AuthContext)();
+  const history = useHistory();
   const { apiEndpoint } = props;
   const [tickets, setTickets] = useState();
 
@@ -19,14 +20,17 @@ function TicketList(props) {
   if (!tickets) return <Spinner color="primary" />;
 
   return (
-    <ul className="ticket-list">
+    <ListGroup className="ticket-list">
       {tickets.map(t => (
-        <li key={t.ticketsid}>
+        <ListGroupItem
+          key={t.ticketsid}
+          onClick={() => history.push(`/ticket/${t.ticketsid}`)}
+        >
           <Link to={`/ticket/${t.ticketsid}`}>{t.title}</Link>
           <p>{t.description}</p>
-        </li>
+        </ListGroupItem>
       ))}
-    </ul>
+    </ListGroup>
   );
 }
 

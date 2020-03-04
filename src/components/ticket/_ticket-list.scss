@@ -1,3 +1,8 @@
-// ul.ticket-list {
-//   color: red;
-// }
+ul.ticket-list {
+  li {
+    cursor: pointer;
+    &:hover {
+      background: #fafafa;
+    }
+  }
+}
