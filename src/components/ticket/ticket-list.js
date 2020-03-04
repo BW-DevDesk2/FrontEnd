@@ -15,6 +15,7 @@ function TicketList(props) {
       console.log(data);
       setTickets(data);
     });
+    // eslint-disable-next-line
   }, []);
 
   if (!tickets) return <Spinner color="primary" />;

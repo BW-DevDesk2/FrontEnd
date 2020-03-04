@@ -5,7 +5,7 @@ import { Card, CardText, CardBody, Button, Spinner } from "reactstrap";
 import { AuthContext } from "../../app";
 
 function Ticket() {
-  const { axios, user } = useContext(AuthContext)();
+  const { axios } = useContext(AuthContext)();
   const { id } = useParams();
   const history = useHistory();
   const [ticket, setTicket] = useState();
@@ -15,6 +15,7 @@ function Ticket() {
       console.log(data);
       setTicket(data);
     });
+    // eslint-disable-next-line
   }, []);
 
   const toggleClaimed = () => {
