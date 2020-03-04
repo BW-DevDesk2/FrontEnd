@@ -17,6 +17,7 @@ function SignUpForm(props) {
 
     axios.post("/api/tickets", ticket).then(response => {
       console.log(response);
+      history.push("/dashboard");
     });
   };
 
@@ -51,33 +52,35 @@ function SignUpForm(props) {
           {errors.description && errors.description.message}
         </span>
       </FormGroup>
-      <FormGroup>
-        <Label for="category">Category</Label>
-        <select
-          id="category"
-          className="form-control"
-          type="select"
-          name="category"
-          ref={register({
-            required: "Required",
-            validate: value =>
-              value !== "Choose one" || "Please select a category"
-          })}
-        >
-          <option disabled>Choose one</option>
-          <option>HTML</option>
-          <option>CSS</option>
-          <option>React</option>
-          <option>Redux</option>
-          <option>Node</option>
-        </select>
-        <span className="error">
-          {errors.category && errors.category.message}
-        </span>
-      </FormGroup>
-      <Button type="submit" color="primary" size="lg" block>
-        Create Ticket
-      </Button>
+      <div className="bottom">
+        <FormGroup>
+          <Label for="category">Category</Label>
+          <select
+            id="category"
+            className="form-control"
+            type="select"
+            name="category"
+            ref={register({
+              required: "Required",
+              validate: value =>
+                value !== "Choose one" || "Please select a category"
+            })}
+          >
+            <option disabled>Choose one</option>
+            <option>HTML</option>
+            <option>CSS</option>
+            <option>React</option>
+            <option>Redux</option>
+            <option>Node</option>
+          </select>
+          <span className="error">
+            {errors.category && errors.category.message}
+          </span>
+        </FormGroup>
+        <Button type="submit" color="primary" size="lg" block>
+          Create Ticket
+        </Button>
+      </div>
     </form>
   );
 }
