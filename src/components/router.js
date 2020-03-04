@@ -29,28 +29,10 @@ function Router(props) {
             <Switch>
               <Route path="/logout" component={Logout} />
               <Route path="/dashboard" component={Dashboard} />
-              <Route path={["/search/:term/:page", "/search/:term", "/search"]}>
-                <h2>Search</h2>
-                <ol className="search-results">
-                  <li>Ticket 1</li>
-                  <li>Ticket 2</li>
-                  <li>Ticket 3</li>
-                </ol>
-              </Route>
-              <Route path="/profile">
-                <UserProfile />
-                <h2>UserProfile</h2>
-                <ol className="ticket-list">
-                  <li>Ticket 1</li>
-                  <li>Ticket 2</li>
-                  <li>Ticket 3</li>
-                </ol>
-              </Route>
+              <Route path="/profile" component={UserProfile} />
               <Route path="/create-ticket" component={CreateTicket} />
-              <Route path={["/ticket/:id/edit", "/ticket/:id"]}>
-                <h2>Edit / View Ticket</h2>
-                <Ticket />
-              </Route>
+              <Route path="/ticket/:id" component={Ticket} />
+
               <Route exact path="/">
                 <Redirect to="/dashboard" />
               </Route>
