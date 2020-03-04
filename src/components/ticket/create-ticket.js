@@ -13,10 +13,8 @@ function SignUpForm(props) {
 
   const onSubmit = values => {
     const ticket = { statusesid: 1, studentid: user.usersid, ...values };
-    console.log(ticket);
 
     axios.post("/api/tickets", ticket).then(response => {
-      console.log(response);
       history.push("/dashboard");
     });
   };

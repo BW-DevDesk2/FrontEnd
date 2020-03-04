@@ -12,7 +12,6 @@ function TicketList(props) {
 
   useEffect(() => {
     axios.get(apiEndpoint).then(({ data }) => {
-      console.log(data);
       setTickets(data);
     });
     // eslint-disable-next-line
@@ -27,8 +26,11 @@ function TicketList(props) {
           key={t.ticketsid}
           onClick={() => history.push(`/ticket/${t.ticketsid}`)}
         >
-          <Link to={`/ticket/${t.ticketsid}`}>{t.title}</Link>
-          <p>{t.description}</p>
+          <div>
+            <Link to={`/ticket/${t.ticketsid}`}>{t.title}</Link>
+            <p>{t.description}</p>
+          </div>
+          <span>{t.category}</span>
         </ListGroupItem>
       ))}
     </ListGroup>

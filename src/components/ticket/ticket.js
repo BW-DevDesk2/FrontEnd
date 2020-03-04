@@ -12,7 +12,6 @@ function Ticket() {
 
   useEffect(() => {
     axios.get(`/api/tickets/${id}`).then(({ data }) => {
-      console.log(data);
       setTicket(data);
     });
     // eslint-disable-next-line
