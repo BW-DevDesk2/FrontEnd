@@ -7,19 +7,37 @@ import { AuthContext } from "../../app";
 function LoginForm(props) {
   const { axios, login } = useContext(AuthContext)();
   const { history } = props;
-  const { handleSubmit, register, errors } = useForm();
+  const { handleSubmit, register, errors, setError } = useForm();
 
   const onSubmit = values => {
     console.log(values);
-    axios.post("/api/login", values).then(response => {
-      console.log(response);
-      const user = response.data;
-      login(user);
-      history.push("/dashboard");
-      try {
-        localStorage.setItem("user", JSON.stringify(user));
-      } catch {}
-    });
+    axios
+      .post("/api/login", values)
+      .then(response => {
+        console.log(response);
+        const user = response.data;
+        login(user);
+        history.push("/dashboard");
+        try {
+          localStorage.setItem("user", JSON.stringify(user));
+        } catch {}
+      })
+      .catch(({ response }) => {
+        console.dir(response.status);
+        if (response.status === 401) {
+          setError(
+            "password",
+            "unauthorized",
+            "There was a problem with your login info"
+          );
+        } else {
+          setError(
+            "password",
+            "login_problem",
+            "There was a problem logging in"
+          );
+        }
+      });
   };
 
   return (
