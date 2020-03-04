@@ -12,7 +12,6 @@ function SignUpForm(props) {
   });
 
   const onSubmit = values => {
-    console.log(values);
     delete values.role; // delete role until backend can handle it
     axios.post("/api/register", values).then(response => {
       console.log(response);

@@ -10,11 +10,9 @@ function LoginForm(props) {
   const { handleSubmit, register, errors, setError } = useForm();
 
   const onSubmit = values => {
-    console.log(values);
     axios
       .post("/api/login", values)
       .then(response => {
-        console.log(response);
         const user = response.data;
         login(user);
         history.push("/dashboard");
@@ -23,7 +21,6 @@ function LoginForm(props) {
         } catch {}
       })
       .catch(({ response }) => {
-        console.dir(response.status);
         if (response.status === 401) {
           setError(
             "password",
