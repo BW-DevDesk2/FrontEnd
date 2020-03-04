@@ -1,8 +1,19 @@
 ul.ticket-list {
   li {
     cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     &:hover {
       background: #fafafa;
+      span {
+        background: #ccc;
+      }
+    }
+    span {
+      background: #eee;
+      border-radius: 0.25rem;
+      padding: 0.25rem;
     }
   }
 }
