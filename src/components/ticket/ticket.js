@@ -44,9 +44,9 @@ function Ticket() {
 
   const { title, description, statusesid } = ticket;
   return (
-    <Card>
+    <Card className="ticket">
       <CardBody>
-        <CardTitle>{title}</CardTitle>
+        <h3 className="card-title">{title}</h3>
         <CardText>{description}</CardText>
         <Button
           color="primary"
