@@ -53,7 +53,7 @@ function Ticket() {
           onClick={toggleClaimed}
           disabled={statusesid === 2}
         >
-          {statusesid === 3 ? "Claimed" : "Claim"}
+          {statusesid === 3 || statusesid === 2 ? "Claimed" : "Claim"}
         </Button>
         <Button color="success" onClick={toggleResolved}>
           {statusesid === 2 ? "Resolved" : "Resolve"}

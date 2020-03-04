@@ -4,12 +4,13 @@ import { Link } from "react-router-dom";
 
 import { AuthContext } from "../../app";
 
-function TicketQueue() {
+function TicketList(props) {
   const { axios } = useContext(AuthContext)();
+  const { apiEndpoint } = props;
   const [tickets, setTickets] = useState();
 
   useEffect(() => {
-    axios.get("/api/tickets/queue").then(({ data }) => {
+    axios.get(apiEndpoint).then(({ data }) => {
       console.log(data);
       setTickets(data);
     });
@@ -18,18 +19,15 @@ function TicketQueue() {
   if (!tickets) return <Spinner color="primary" />;
 
   return (
-    <>
-      <h2>Ticket Queue</h2>
-      <ol className="ticket-list">
-        {tickets.map(t => (
-          <li key={t.ticketsid}>
-            <Link to={`/ticket/${t.ticketsid}`}>{t.title}</Link>
-            <p>{t.description}</p>
-          </li>
-        ))}
-      </ol>
-    </>
+    <ul className="ticket-list">
+      {tickets.map(t => (
+        <li key={t.ticketsid}>
+          <Link to={`/ticket/${t.ticketsid}`}>{t.title}</Link>
+          <p>{t.description}</p>
+        </li>
+      ))}
+    </ul>
   );
 }
 
-export default TicketQueue;
+export default TicketList;
