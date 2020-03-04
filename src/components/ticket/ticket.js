@@ -48,7 +48,11 @@ function Ticket() {
       <CardBody>
         <CardTitle>{title}</CardTitle>
         <CardText>{description}</CardText>
-        <Button color="primary" onClick={toggleClaimed}>
+        <Button
+          color="primary"
+          onClick={toggleClaimed}
+          disabled={statusesid === 2}
+        >
           {statusesid === 3 ? "Claimed" : "Claim"}
         </Button>
         <Button color="success" onClick={toggleResolved}>

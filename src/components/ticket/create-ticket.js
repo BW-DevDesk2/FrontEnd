@@ -5,24 +5,19 @@ import { Button, FormGroup, Label } from "reactstrap";
 import { AuthContext } from "../../app";
 
 function SignUpForm(props) {
-  const { axios, login } = useContext(AuthContext)();
+  const { axios, user } = useContext(AuthContext)();
   const { history } = props;
   const { handleSubmit, register, errors } = useForm({
     defaultValues: { category: "Choose one" }
   });
 
   const onSubmit = values => {
-    console.log(values);
-    // delete values.role; // delete role until backend can handle it
-    // axios.post("/api/register", values).then(response => {
-    //   console.log(response);
-    //   const user = response.data;
-    //   login(user);
-    //   history.push("/dashboard");
-    //   try {
-    //     localStorage.setItem("user", JSON.stringify(user));
-    //   } catch {}
-    // });
+    const ticket = { statusesid: 1, studentid: user.usersid, ...values };
+    console.log(ticket);
+
+    axios.post("/api/tickets", ticket).then(response => {
+      console.log(response);
+    });
   };
 
   return (
