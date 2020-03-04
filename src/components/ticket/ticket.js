@@ -35,11 +35,12 @@ function Ticket() {
 
   if (!ticket) return <Spinner color="primary" />;
 
-  const { title, description, statusesid } = ticket;
+  const { category, title, description, statusesid } = ticket;
   return (
     <Card className="ticket">
       <CardBody>
         <h3 className="card-title">{title}</h3>
+        <span className="card-subtitle">{category}</span>
         <CardText>{description}</CardText>
         <Button
           color="primary"
