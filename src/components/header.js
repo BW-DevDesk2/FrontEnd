@@ -22,7 +22,6 @@ function Header(props) {
             </>
           )}
         </div>
-        {/* <SearchBar /> */}
       </nav>
     </header>
   );

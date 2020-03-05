@@ -18,10 +18,16 @@ class App extends Component {
 
   login(user) {
     this.setState({ user });
+    try {
+      localStorage.setItem("user", JSON.stringify(user));
+    } catch {}
   }
 
   logout() {
     this.setState({ user: null });
+    try {
+      localStorage.removeItem("user");
+    } catch {}
   }
 
   getAuth() {

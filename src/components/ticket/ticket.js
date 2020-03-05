@@ -1,27 +1,20 @@
 import React, { useContext, useEffect, useState } from "react";
 import { useParams, useHistory } from "react-router-dom";
-import {
-  Card,
-  CardText,
-  CardBody,
-  CardTitle,
-  Button,
-  Spinner
-} from "reactstrap";
+import { Card, CardText, CardBody, Button, Spinner } from "reactstrap";
 
 import { AuthContext } from "../../app";
 
 function Ticket() {
-  const { axios, user } = useContext(AuthContext)();
+  const { axios } = useContext(AuthContext)();
   const { id } = useParams();
   const history = useHistory();
   const [ticket, setTicket] = useState();
 
   useEffect(() => {
     axios.get(`/api/tickets/${id}`).then(({ data }) => {
-      console.log(data);
       setTicket(data);
     });
+    // eslint-disable-next-line
   }, []);
 
   const toggleClaimed = () => {
@@ -42,14 +35,19 @@ function Ticket() {
 
   if (!ticket) return <Spinner color="primary" />;
 
-  const { title, description, statusesid } = ticket;
+  const { category, title, description, statusesid } = ticket;
   return (
-    <Card>
+    <Card className="ticket">
       <CardBody>
-        <CardTitle>{title}</CardTitle>
+        <h3 className="card-title">{title}</h3>
+        <span className="card-subtitle">{category}</span>
         <CardText>{description}</CardText>
-        <Button color="primary" onClick={toggleClaimed}>
-          {statusesid === 3 ? "Claimed" : "Claim"}
+        <Button
+          color="primary"
+          onClick={toggleClaimed}
+          disabled={statusesid === 2}
+        >
+          {statusesid === 3 || statusesid === 2 ? "Claimed" : "Claim"}
         </Button>
         <Button color="success" onClick={toggleResolved}>
           {statusesid === 2 ? "Resolved" : "Resolve"}

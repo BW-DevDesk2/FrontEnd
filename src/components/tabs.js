@@ -1,14 +1,15 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
-import AuthContext from "../app";
 
 function Tabs(props) {
   return (
     <nav className="tabs">
       <NavLink to="/dashboard">Dashboard</NavLink>
-      <NavLink to="/search">Search</NavLink>
-      <NavLink to="/user/id">User</NavLink>
-      <NavLink to="/ticket">Ticket</NavLink>
+      <NavLink to="/create-ticket">Create Ticket</NavLink>
+      <NavLink to="/profile">Profile</NavLink>
+      <NavLink to="/ticket" className="display-active">
+        Ticket
+      </NavLink>
     </nav>
   );
 }

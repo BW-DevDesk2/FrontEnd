@@ -1,0 +1,12 @@
+form.create-ticket {
+  textarea {
+    height: 300px;
+  }
+  div.bottom {
+    max-width: 500px;
+    margin: auto;
+  }
+  span.error {
+    color: red;
+  }
+}
