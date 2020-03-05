@@ -12,7 +12,7 @@ function UserProfile(props) {
   const username = JSON.parse(window.localStorage.getItem("user"));
   const userID = username.usersid;
 
-  //
+  // Pull User profile data from API
 
   useEffect(() => {
     const getUser = () => {
