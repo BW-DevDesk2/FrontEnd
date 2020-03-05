@@ -9,9 +9,11 @@ import {
   Button,
   Spinner
 } from "reactstrap";
+import { useForm } from "react-hook-form";
 
 function UserProfile(props) {
   const [user, setUser] = useState([]);
+  const [info, updateInfo] = useState([]);
   const [roles, setRoles] = useState([]);
   const { axios } = useContext(AuthContext)();
 
@@ -37,6 +39,8 @@ function UserProfile(props) {
     getUser();
   }, []);
 
+  // RETRIEVE USER ROLES
+
   useEffect(() => {
     const getRoles = () => {
       axios
@@ -54,43 +58,32 @@ function UserProfile(props) {
 
   // FORM TO MAKE CHANGES TO PROFILE IN DATABASE
 
-  // function Ticket() {
-  //   const { axios, user } = useContext(AuthContext)();
-  //   const { id } = useParams();
-  //   const history = useHistory();
-  //   const [ticket, setTicket] = useState();
+  const { register, handleSubmit, watch, errors } = useForm();
+  const [status, updateStatus] = useState();
 
-  //   useEffect(() => {
-  //     axios.get(`/api/tickets/${id}`).then(({ data }) => {
-  //       console.log(data);
-  //       setTicket(data);
-  //     });
-  //   }, []);
+  const onSubmit = data => {
+    updateUser(data);
+    updateInfo(data);
+    console.log(data);
+    console.log(errors);
+    updateStatus("Successfully updated!");
 
-  //   const toggleClaimed = () => {
-  //     const update = { ...ticket };
-  //     update.statusesid === 3
-  //       ? (update.statusesid = 1)
-  //       : (update.statusesid = 3);
-  //     axios.put(`/api/tickets/${id}`, update).then(() => setTicket(update));
-  //   };
+    console.log(watch("name")); // watch input value by passing the name of it
+    console.log(watch("email"));
+  };
 
-  //   const toggleResolved = () => {
-  //     const update = { ...ticket };
-  //     update.statusesid === 2
-  //       ? (update.statusesid = 3)
-  //       : (update.statusesid = 2);
-  //     axios.put(`/api/tickets/${id}`, update).then(() => setTicket(update));
-  //   };
+  // MAKE PUT REQUEST TO CHANGE PROFILE INFO
 
-  //   const deleteTicket = () => {
-  //     axios.delete(`/api/tickets/${id}`).then(() => history.push("/dashboard"));
-  //   };
-
-  //   if (!ticket) return <Spinner color="primary" />;
-
-  //   const { title, description, statusesid } = ticket;
-  // }
+  const updateUser = data => {
+    axios
+      .put(`/api/users/${userID}`, data)
+      .then(response => {
+        console.log("Response back from trying to update profile: ", response);
+      })
+      .catch(error => {
+        console.log("Error in successfully changing profile: ", error);
+      });
+  };
 
   //
 
@@ -98,19 +91,44 @@ function UserProfile(props) {
     <Card>
       <CardBody>
         <CardTitle>My Profile </CardTitle>
-        <CardTitle>
-          <b>Name:</b> {user.name}
-        </CardTitle>
-        <CardTitle>
-          <b>Email:</b> {user.role}
-        </CardTitle>
-        <CardTitle>
-          <b>Role:</b> {user.email}
-        </CardTitle>
         <CardText></CardText>
-        <Button color="primary">button</Button>
-        <Button color="success">button</Button>
-        <Button color="danger">Delete</Button>
+        <form onSubmit={handleSubmit(onSubmit)}>
+          <CardTitle>
+            <b>Name: </b>
+            <input
+              name="name"
+              defaultValue={user.name}
+              ref={register({ minLength: { value: 5, message: "too short" } })}
+            />
+            {errors.name && "Your name is too short!"}
+          </CardTitle>
+          <CardTitle>
+            <b>Email: </b>
+            <input
+              name="email"
+              defaultValue={user.email}
+              ref={register({
+                pattern: {
+                  value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i,
+                  message: "invalid email address"
+                },
+                minLength: { value: 5, message: "Too SHORT!!" },
+                required: true
+              })}
+            />
+            {errors.email && "Must be a valid email address!"}
+          </CardTitle>
+          <CardTitle>
+            <b>ID:</b>
+            {userID}
+          </CardTitle>
+          <CardTitle>
+            <b>Role:</b> {user.role}
+          </CardTitle>
+          {errors.exampleRequired && <span>This field is required</span>}
+          <input type="submit" value="Update Profile" />
+          {status}
+        </form>
       </CardBody>
     </Card>
   );
