@@ -6,7 +6,6 @@ import { useForm } from "react-hook-form";
 function UserProfile(props) {
   const [user, setUser] = useState([]);
   const [info, updateInfo] = useState([]);
-  const [role, setRoles] = useState([]);
   const { axios } = useContext(AuthContext)();
 
   // Grab current user that's logged in
@@ -29,29 +28,6 @@ function UserProfile(props) {
         });
     };
     getUser();
-  }, []);
-
-  // RETRIEVE USER ROLES
-
-  const rolesAPI = require("axios");
-  rolesAPI.defaults.baseURL = "https://devdesk2eli.herokuapp.com/";
-  rolesAPI.defaults.headers.common = {
-    Authorization: `eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImV2b2luZ3JhbUBhcXVvY28ub25taWNyb3NvZnQuY29tIiwiaWF0IjoxNTgzNDQwNDM5LCJleHAiOjE1ODM1MjY4Mzl9.WogJLbqBo5UEWlQEMQP7stK46dI04tPtnYUuP9crkO0`
-  };
-
-  useEffect(() => {
-    const getRoles = () => {
-      rolesAPI
-        .get(`/api/roles/${userID}`)
-        .then(role => {
-          console.log("Role is: ", role);
-          setRoles(role.data);
-        })
-        .catch(error => {
-          console.log("Error retrieving roles: ", error);
-        });
-    };
-    getRoles();
   }, []);
 
   // FORM TO MAKE CHANGES TO PROFILE IN DATABASE
@@ -119,9 +95,6 @@ function UserProfile(props) {
           <CardTitle>
             <b>ID:</b>
             {userID}
-          </CardTitle>
-          <CardTitle>
-            <b>Role:</b> {role}
           </CardTitle>
           {errors.exampleRequired && <span>This field is required</span>}
           <input type="submit" value="Update Profile" />
