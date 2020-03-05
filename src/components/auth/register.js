@@ -17,9 +17,10 @@ function SignUpForm(props) {
       .matches(
         /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i,
         "Please enter a valid email address"
-      )
-      .required("Please enter a valid email address"),
-    password: yup.string().required("Please enter a password"),
+      ),
+    password: yup
+      .string()
+      .min(6, "Password must be at least 6 characters long"),
     role: yup.string().notOneOf(["Choose one"], "Please select a role")
   });
 
