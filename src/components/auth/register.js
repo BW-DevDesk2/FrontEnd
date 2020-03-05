@@ -1,5 +1,6 @@
 import React, { useContext } from "react";
 import { useForm } from "react-hook-form";
+import * as yup from "yup";
 import { Button, FormGroup, Label } from "reactstrap";
 
 import { AuthContext } from "../../app";
@@ -7,8 +8,23 @@ import { AuthContext } from "../../app";
 function SignUpForm(props) {
   const { axios, login } = useContext(AuthContext)();
   const { history } = props;
+
+  const schema = yup.object().shape({
+    name: yup.string().required("Please enter your name"),
+    email: yup
+      .string()
+      .matches(
+        /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i,
+        "Please enter a valid email address"
+      )
+      .required("Please enter a valid email address"),
+    password: yup.string().required("Please enter a password"),
+    role: yup.string().notOneOf(["Choose one"], "Please select a role")
+  });
+
   const { handleSubmit, register, errors } = useForm({
-    defaultValues: { role: "Choose one" }
+    defaultValues: { role: "Choose one" },
+    validationSchema: schema
   });
 
   const onSubmit = values => {
@@ -31,9 +47,7 @@ function SignUpForm(props) {
           type="name"
           id="name"
           placeholder="Your Name"
-          ref={register({
-            required: "Required"
-          })}
+          ref={register()}
         />
         <span className="error">{errors.name && errors.name.message}</span>
       </FormGroup>
@@ -45,13 +59,7 @@ function SignUpForm(props) {
           type="email"
           id="email"
           placeholder="you@example.com"
-          ref={register({
-            required: "Required",
-            pattern: {
-              value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i,
-              message: "invalid email address"
-            }
-          })}
+          ref={register()}
         />
         <span className="error">{errors.email && errors.email.message}</span>
       </FormGroup>
@@ -62,10 +70,7 @@ function SignUpForm(props) {
           type="password"
           name="password"
           id="password"
-          ref={register({
-            required: "Required",
-            validate: value => value !== "password" || "Use a better password"
-          })}
+          ref={register()}
         />
         <span className="error">
           {errors.password && errors.password.message}
@@ -78,10 +83,7 @@ function SignUpForm(props) {
           className="form-control"
           type="select"
           name="role"
-          ref={register({
-            required: "Required",
-            validate: value => value !== "Choose one" || "Please select a role"
-          })}
+          ref={register()}
         >
           <option disabled>Choose one</option>
           <option>Student</option>
