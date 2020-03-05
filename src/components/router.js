@@ -14,7 +14,7 @@ import UserProfile from "./UserProfile";
 import Ticket from "./ticket/ticket";
 import CreateTicket from "./ticket/create-ticket";
 
-function Router(props) {
+function Router() {
   return (
     <BrowserRouter>
       <Header />
