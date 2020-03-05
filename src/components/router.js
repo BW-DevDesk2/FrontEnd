@@ -32,10 +32,7 @@ function Router(props) {
               <Route path="/profile" component={UserProfile} />
               <Route path="/create-ticket" component={CreateTicket} />
               <Route path="/ticket/:id" component={Ticket} />
-
-              <Route exact path="/">
-                <Redirect to="/dashboard" />
-              </Route>
+              <Redirect to="/dashboard" />
             </Switch>
           </PrivateRoute>
         </Switch>
