@@ -1,20 +1,12 @@
 import React, { useState, useEffect, useContext } from "react";
-import { useParams } from "react-router-dom";
 import { AuthContext } from "../app";
-import {
-  Card,
-  CardText,
-  CardBody,
-  CardTitle,
-  Button,
-  Spinner
-} from "reactstrap";
+import { Card, CardText, CardBody, CardTitle } from "reactstrap";
 import { useForm } from "react-hook-form";
 
 function UserProfile(props) {
   const [user, setUser] = useState([]);
   const [info, updateInfo] = useState([]);
-  const [roles, setRoles] = useState([]);
+  const [role, setRoles] = useState([]);
   const { axios } = useContext(AuthContext)();
 
   // Grab current user that's logged in
@@ -22,12 +14,12 @@ function UserProfile(props) {
   const username = JSON.parse(window.localStorage.getItem("user"));
   const userID = username.usersid;
 
-  // RETRIEVE PROFILE DATA
+  // RETRIEVE USER PROFILE DATA
 
   useEffect(() => {
     const getUser = () => {
       axios
-        .get(`/api/users/${userID}`)
+        .get(`api/users/${userID}`)
         .then(({ data }) => {
           console.log(data);
           setUser(data);
@@ -41,13 +33,19 @@ function UserProfile(props) {
 
   // RETRIEVE USER ROLES
 
+  const rolesAPI = require("axios");
+  rolesAPI.defaults.baseURL = "https://devdesk2eli.herokuapp.com/";
+  rolesAPI.defaults.headers.common = {
+    Authorization: `eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImV2b2luZ3JhbUBhcXVvY28ub25taWNyb3NvZnQuY29tIiwiaWF0IjoxNTgzNDQwNDM5LCJleHAiOjE1ODM1MjY4Mzl9.WogJLbqBo5UEWlQEMQP7stK46dI04tPtnYUuP9crkO0`
+  };
+
   useEffect(() => {
     const getRoles = () => {
-      axios
+      rolesAPI
         .get(`/api/roles/${userID}`)
-        .then(data => {
-          console.log(data);
-          //setRoles(data);
+        .then(role => {
+          console.log("Role is: ", role);
+          setRoles(role.data);
         })
         .catch(error => {
           console.log("Error retrieving roles: ", error);
@@ -123,7 +121,7 @@ function UserProfile(props) {
             {userID}
           </CardTitle>
           <CardTitle>
-            <b>Role:</b> {user.role}
+            <b>Role:</b> {role}
           </CardTitle>
           {errors.exampleRequired && <span>This field is required</span>}
           <input type="submit" value="Update Profile" />
